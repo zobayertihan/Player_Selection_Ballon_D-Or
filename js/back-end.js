@@ -6,9 +6,9 @@ function addNameToList(getElement) {
     const playerList = document.getElementById("player-list");
     getPlayerName = document.getElementById(getElement);
     playerName = getPlayerName.innerText;
-    const playerNameString = document.createElement('li');
-    playerNameString.appendChild(document.createTextNode(playerName));
-    playerList.appendChild(playerNameString);
+    const createElementInList = document.createElement('li');
+    createElementInList.appendChild(document.createTextNode(playerName));
+    playerList.appendChild(createElementInList);
 }
 
 document.getElementById('player-1').addEventListener('click', function () {
@@ -68,4 +68,16 @@ document.getElementById('player-6').addEventListener('click', function () {
         addNameToList('messi-6');
         document.getElementById("player-6").disabled = true;
     }
+})
+
+document.getElementById('calculate').addEventListener('click', function () {
+    const val = listCount();
+
+    const getPerPlayer = document.getElementById('per-player');
+    const perPlayerString = getPerPlayer.value;
+    const perPlayer = parseInt(perPlayerString);
+
+    const getPlayerExpenses = document.getElementById('player-expenses');
+    const playerExpenses = val * perPlayer;
+    getPlayerExpenses.value = playerExpenses;
 })
