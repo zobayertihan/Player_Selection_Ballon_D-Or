@@ -11,6 +11,13 @@ function addNameToList(getElement) {
     playerList.appendChild(createElementInList);
 }
 
+function getElementValue(elementId) {
+    const getPerPlayer = document.getElementById(elementId);
+    const perPlayerString = getPerPlayer.value;
+    const perPlayer = parseInt(perPlayerString);
+    return perPlayer
+}
+
 document.getElementById('player-1').addEventListener('click', function () {
     if (listCount() > 4) {
         alert("Cant");
@@ -73,11 +80,20 @@ document.getElementById('player-6').addEventListener('click', function () {
 document.getElementById('calculate').addEventListener('click', function () {
     const val = listCount();
 
-    const getPerPlayer = document.getElementById('per-player');
-    const perPlayerString = getPerPlayer.value;
-    const perPlayer = parseInt(perPlayerString);
+    getElementValue('per-player');
 
     const getPlayerExpenses = document.getElementById('player-expenses');
-    const playerExpenses = val * perPlayer;
+    const playerExpenses = val * getElementValue('per-player');
     getPlayerExpenses.value = playerExpenses;
+})
+
+document.getElementById('total-calculate').addEventListener('click', function () {
+    getElementValue('manager');
+    getElementValue('coach');
+    const val = listCount();
+    const playerExpenses = val * getElementValue('per-player');
+    const totalExpenses = playerExpenses + getElementValue('manager') + getElementValue('coach');
+    const getTotalExpeses = document.getElementById('total-expenses')
+    getTotalExpeses.value = totalExpenses;
+
 })
